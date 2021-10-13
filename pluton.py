@@ -35,7 +35,7 @@ for voice in voices:
 
 #Insert your HKEY for the narrator's voices
 #Eg: voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\MSTTS_V110_enGB_GeorgeM"
-voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\MSTTS_V110_enGB_GeorgeM"
+voice_id = " "
 engine.setProperty('voice', voice_id)
 
 #start engine
