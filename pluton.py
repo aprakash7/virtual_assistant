@@ -1,4 +1,10 @@
-#rint('hello world')
+# -*- coding: utf-8 -*-
+"""
+Created on 19/07/2021
+@author: Akshay Prakash
+"""
+
+
 import pyaudio
 import speech_recognition as sr
 import pyttsx3
@@ -27,14 +33,17 @@ for voice in voices:
     id= "ID: %s" %voice.id
     #print("ID: %s" %voice.id)
 
+#Insert your HKEY for the narrator's voices
+#Eg: voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\MSTTS_V110_enGB_GeorgeM"
 voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\MSTTS_V110_enGB_GeorgeM"
 engine.setProperty('voice', voice_id)
 
-
+#start engine
 def talk(text):
     engine.say(text)
     engine.runAndWait()
 
+#Take command
 def take_command():
     try:
         #Pass if not recognized
@@ -47,29 +56,33 @@ def take_command():
     except:
         pass
     return command
-#print('hello')
 
+#Function for while 
 def run_bot():
     command= take_command()
     #print(command)
 
+    #exit
     if 'bye' in command or 'stop' in command or 'see you' in command or 'thank you' in command:
         talk('I will see you again friend')
         print('Shutting down')
         exit()
-
+    
+    #Songs
     elif 'play' in command:
         #Songs on Youtube
         song= command.replace('play', '')
         talk('Playing'+ song)
         pywhatkit.playonyt(song)
-
+    
+    #Time
     elif 'time' in command:
         #Return hours and minutes, 1 to 12 hr %I
         current_time= datetime.datetime.now().strftime('%I %M %p')
         talk('It is'+ current_time + 'in India now')
         print(current_time)
-
+    
+    #Gain information
     elif 'wikipedia search' in command:
         #wikipedia information (object, no of lines)
         try:
@@ -150,12 +163,12 @@ def run_bot():
         webbrowser.open_new_tab(command)
         talk('Opened' + command)
 
-         #APPID T8G838-68W3GY8TAW
+         #Create wolfram alpha account and insert your UNIQUE-> app_id
          #listens two times in this statement
     elif 'question' in command:
         talk('I can answer to computational and geographical questions, what question do you want to ask now?')
         question=take_command() # give question
-        app_id="T8G838-68W3GY8TAW"
+        app_id=" "
         client = wolframalpha.Client(app_id) #instance of class wolframalpha
         res = client.query(question) #res stores the response
         answer = next(res.results).text
