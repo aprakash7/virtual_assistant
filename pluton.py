@@ -43,6 +43,19 @@ def talk(text):
     engine.say(text)
     engine.runAndWait()
 
+#Greet
+def wishMe():
+    hour=datetime.datetime.now().hour
+    if hour>=0 and hour<12:
+        speak("Hello,Good Morning")
+        print("Hello,Good Morning")
+    elif hour>=12 and hour<18:
+        speak("Hello,Good Afternoon")
+        print("Hello,Good Afternoon")
+    else:
+        speak("Hello,Good Evening")
+        print("Hello,Good Evening")
+        
 #Take command
 def take_command():
     try:
@@ -150,7 +163,6 @@ def run_bot():
         news= webbrowser.open_new_tab('https://www.sciencedaily.com/news/top/science/')
         news_2= webbrowser.open_new_tab('https://www.livescience.com/news')
 
-
     #ecapture
     #accepts 3 parameters, first connected index is 0
     elif 'take a photo' in command or 'capture' in command:
@@ -192,4 +204,5 @@ def run_bot():
         talk('Could you repeat?')
 
 while True:
+    wishMe()
     run_bot()
